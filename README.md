@@ -1,6 +1,7 @@
 # Frontend gulp boilerplate
 
 [![node)](https://img.shields.io/badge/node->=14-informational?style=for-the-badge)](https://nodejs.org/)
+![gulp-current](https://img.shields.io/badge/gulp-v4.0.2-informational?style=for-the-badge&logo=gulp)
 [![GitHub License](https://img.shields.io/github/license/gcolombi/frontend-gulp-boilerplate?color=informational&style=for-the-badge)](https://github.com/gcolombi/frontend-gulp-boilerplate/blob/master/LICENSE)
 [![barba](https://img.shields.io/badge/barba-v2.9.7-green?style=for-the-badge)](https://github.com/barbajs/barba)
 [![loadx](https://img.shields.io/badge/loadx-v0.1.1-green?style=for-the-badge)](https://github.com/cesarwbr/loadx)
