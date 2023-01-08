@@ -5,7 +5,12 @@
     "author": "Gérard Colombi",
     "private": true,
     "license": "MIT",
-    "scripts": {},
+    "scripts": {
+        "build": "gulp build",
+        "watch": "gulp watch",
+        "dev": "gulp serve",
+        "production": "gulp production"
+    },
     "dependencies": {
         "@barba/core": "^2.9.7",
         "loadx": "^0.1.1",
