@@ -1,0 +1,26 @@
+{
+    "name": "frontend-gulp-boilerplate",
+    "version": "1.0.0",
+    "description": "Starter project template boilerplate based on Gulp.",
+    "author": "Gérard Colombi",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+    },
+    "dependencies": {
+        "@barba/core": "^2.9.7",
+        "loadx": "^0.1.1",
+        "locomotive-scroll": "^4.1.4",
+        "vanilla-lazyload": "^17.8.3"
+    },
+    "devDependencies": {
+        "sass": "^1.57.1"
+    },
+    "engines": {
+        "node": ">=14"
+    },
+    "browserslist": [
+        "> 5%",
+        "last 2 versions"
+    ]
+}
