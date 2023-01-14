@@ -22,10 +22,7 @@ export default class Store {
              * https://developer.wordpress.org/reference/functions/get_template_directory_uri/
              * https://developer.wordpress.org/reference/functions/wp_localize_script/
              */
-            themeUrl: window.theme?.url,
-            env: process.env.NODE_ENV,
-            isProd: process.env.NODE_ENV === 'production',
-            isDev: process.env.NODE_ENV === 'development'
+            themeUrl: window.theme?.url
         };
 
         /**

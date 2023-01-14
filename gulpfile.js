@@ -10,7 +10,6 @@ const { series, parallel, src, dest, watch } = require("gulp");
  * Gulp plugins
  */
 const uglify = require('gulp-uglify');
-const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
 const buffer = require('vinyl-buffer');
 
@@ -30,16 +29,15 @@ const environment = require('./configuration/utils/gulp.environment');
  * Each function must either return the gulp stream or execute a callback function e.g. done() or cb()
  */
 const styles = require('./configuration/tasks/gulp.styles');
-const { app, appDev, appProd, modules } = require('./configuration/tasks/gulp.scripts');
+const { scripts, modules } = require('./configuration/tasks/gulp.scripts');
 const html = require("./configuration/tasks/gulp.html");
-const { images, images_webp } = require('./configuration/tasks/gulp.images');
+const { images, imagesWebp } = require('./configuration/tasks/gulp.images');
 const fonts = require('./configuration/tasks/gulp.fonts');
 
 /**
  * Watches filechanges and reloads the page
  */
 function watchfiles(done) {
-
     /* executes html task */
     watch(environment.paths.html.watch, series(html, reload));
 
@@ -47,7 +45,7 @@ function watchfiles(done) {
     watch(environment.paths.styles.watch, series(styles, reload));
 
     /* executes js task */
-    watch(environment.paths.app.watch, series(appDev, reload));
+    watch(environment.paths.app.watch, series(scripts, reload));
     watch(environment.paths.modules.watch, series(modules, reload));
 
     done();
@@ -59,7 +57,6 @@ function watchfiles(done) {
 function minifyJS() {
     return src(`${environment.paths.dest}**/*.js`)
     .pipe(buffer())
-    .pipe(rename({ extname: '.min.js' }))
     .pipe(uglify())
     .pipe(dest(environment.paths.dest));
 }
@@ -70,7 +67,6 @@ function minifyJS() {
 function minifyCSS() {
     return src(`${environment.paths.dest}**/*.css`)
     .pipe(buffer())
-    .pipe(rename({ extname: '.min.css' }))
     .pipe(cleanCSS())
     .pipe(dest(environment.paths.dest));
 }
@@ -78,8 +74,8 @@ function minifyCSS() {
 /**
  * Exports main tasks
  */
-exports.default = series(clean, parallel( html, styles, app, modules, images, images_webp, fonts));
-exports.build = series(clean, parallel( html, styles, app, modules, images, images_webp, fonts));
-exports.serve = series(series( clean, parallel( html, styles, appDev, modules, images, images_webp, fonts)), serve, watchfiles);
-exports.watch = series(series(clean, parallel(html, styles, appDev, modules, images, images_webp, fonts)), watchfiles);
-exports.production = series(series(clean, parallel( html, styles, appProd, modules, images, images_webp, fonts)), parallel(minifyCSS, minifyJS));
+exports.default = series(clean, parallel( html, styles, scripts, modules, images, imagesWebp, fonts));
+exports.build = series(clean, parallel( html, styles, scripts, modules, images, imagesWebp, fonts));
+exports.serve = series(series( clean, parallel( html, styles, scripts, modules, images, imagesWebp, fonts)), serve, watchfiles);
+exports.watch = series(series(clean, parallel(html, styles, scripts, modules, images, imagesWebp, fonts)), watchfiles);
+exports.production = series(series(clean, parallel( html, styles, scripts, modules, images, imagesWebp, fonts)), parallel(minifyCSS, minifyJS));

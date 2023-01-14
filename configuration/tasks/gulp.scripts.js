@@ -24,18 +24,13 @@ const { browserSync } = require('../browserSync');
 const environment = require('../utils/gulp.environment');
 
 /**
- * Transpiles the main app script
- * @param {boolean} isProd 
+ * Transpiles the main scripts
  */
-function app(isProd) {
+function scripts() {
     return src(environment.paths.app.src)
     .pipe(gulpEsbuild({
         outfile: 'app.js',
-        bundle: true,
-        define: {
-            // 'process.env.NODE_ENV': isProd
-            'process.env.NODE_ENV': isProd ? "\"production\"" : "\"development\""
-        }
+        bundle: true
     }))
     .pipe(plumber())
     .pipe(buffer())
@@ -43,22 +38,6 @@ function app(isProd) {
     .pipe(sourcemaps.write('/'))
     .pipe(dest(environment.paths.app.dest))
     .pipe(browserSync.stream());
-}
-
-function appDev(done) {
-    // app("\"development\"");
-    app(false);
-    // app();
-    
-    done();
-}
-
-function appProd(done) {
-    // app("\"production\"");
-    app(true);
-    // app('"production"');
-    
-    done();
 }
 
 /**
@@ -78,8 +57,6 @@ function modules() {
 }
 
 module.exports = {
-    app,
-    appDev,
-    appProd,
+    scripts,
     modules
 }

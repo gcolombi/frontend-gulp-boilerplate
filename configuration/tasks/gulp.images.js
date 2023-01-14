@@ -28,7 +28,7 @@ function images() {
 /**
  * Creates webp images
  */
-function images_webp() {
+function imagesWebp() {
     return src(environment.paths.webp.src)
     .pipe(webp())
     .pipe(dest(environment.paths.webp.dest));
@@ -36,5 +36,5 @@ function images_webp() {
 
 module.exports = {
     images,
-    images_webp
+    imagesWebp
 }

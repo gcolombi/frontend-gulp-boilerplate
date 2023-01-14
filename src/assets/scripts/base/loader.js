@@ -109,7 +109,7 @@ export default class Loader {
      */
     static getModuleUrl(file, theme) {
         const assetsPath = '/dist/assets';
-        const filename = file + (window.Store.environment.isDev ? '.js' : '.min.js');
+        const filename = `${file}.js`;
 
         /* Is Wordpress, get js file from theme directory */
         /*
