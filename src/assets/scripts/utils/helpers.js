@@ -1,17 +1,4 @@
-import loadx from 'loadx'
-
-/**
- * Retrieves development environment state
- * @returns {boolean} development environment state
- */
-export function isDev() {
-	const host = window.location.hostname
-
-	if(host.indexOf('.test') || host.indexOf('localhost') || host.indexOf('.local'))
-        return true
-
-	return false
-}
+import loadx from 'loadx';
 
 /**
  * Gets transition end event name

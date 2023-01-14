@@ -109,7 +109,7 @@ export default class Loader {
      */
     static getModuleUrl(file, theme) {
         const assetsPath = '/dist/assets';
-        const filename = `${file}.js`;
+        const filename = file + (window.Store.environment.isDev ? '.js' : '.min.js');
 
         /* Is Wordpress, get js file from theme directory */
         /*
@@ -122,6 +122,7 @@ export default class Loader {
         if (window.location.hostname == 'localhost') {
             return `//${window.location.host}/assets/${filename}`;
         }
+
         /* else root */
         return `//${window.location.host}/assets/${filename}`;
     }
