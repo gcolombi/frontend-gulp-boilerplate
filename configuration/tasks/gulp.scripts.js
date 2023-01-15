@@ -30,7 +30,11 @@ function scripts() {
     return src(environment.paths.app.src)
     .pipe(gulpEsbuild({
         outfile: 'app.js',
-        bundle: true
+        bundle: true,
+        target: [
+            'es2015',
+            'safari11'
+        ]
     }))
     .pipe(plumber())
     .pipe(buffer())
@@ -47,7 +51,11 @@ function scripts() {
 function modules() {
     return src(environment.paths.modules.src)
     .pipe(gulpEsbuild({
-        bundle: true
+        bundle: true,
+        target: [
+            'es2015',
+            'safari11'
+        ]
     }))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
